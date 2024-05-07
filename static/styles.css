@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar-container .navbar {
+    background-color: #202125;
+    color: #fff;
+    padding: 1.2vh 6vw;
+}
+
+.navbar-container .navbar .profile-btn {
+    background-color: white;
+    border: none;
+    color: black;
+    font-weight: 700;
+    padding: .35rem .8rem;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    transition: .2s;
+}
+
+
+.navbar-container .navbar .profile-btn:hover {
+    background-color: rgb(198, 198, 198);
+}
+
+.extraClass{
+     font-size:50px;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 150vh;
+    background-image: url('./img/herosection.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hero-container .header-container {
+    height: 85vh;
+}
+
+.hero-container .header-container .box {
+    height: 30vh;
+    width: 40vw;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.hero-container .header-container h1 {
+    font-size: 5rem;
+    color: white;
+    text-shadow: 3px 4px 7px black;
+}
+
+.hero-container button {
+    background-color: #898585;
+    border: none;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    transition: .2s;
+    margin-bottom: 1rem;
+    
+}
+
+.hero-container button a {
+    color: #fdf0d5;
+}
+
+.hero-container button:hover {
+    background-color: #111010;
+    transform:scale(1.06);
+
+}
+
+.lend-container {
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:url('https://images.unsplash.com/photo-1604866830893-c13cafa515d5?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #202125;
+    
+}
+
+.lend-container h1 {
+    margin-bottom: 8vh;
+    color: #fff;
+}
+
+.lend-container .mb-3 label {
+    width: 18vw;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+}
+
+.book-gallery {
+    padding: 0 10vw;
+    display: grid;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #202125;
+}
+
+.ai-gallery {
+    padding: 0 10vw;
+    display: grid;
+    row-gap: 2rem;
+    background-color: #202125;
+}
+
+.notfound {
+    padding: 0 10vw;
+    row-gap: 2rem;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3rem;
+    background-color: red;
+    color: white;
+}
+
+.loader {
+    padding: 0 10vw;
+    row-gap: 2rem;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+    color: white;
+}
+
+.book-gallery .card {
+    place-self: center;
+    cursor: pointer;
+    transition: .2s;
+    height: 45vh;
+}
+
+.book-gallery .card:hover {
+    transform: scale(1.06);
+}
+
+.hide {
+    display: none;
+}
+
+.fa-star {
+    font-size : 50px;
+    align-content: center;
+    colo: green;
+}
+.container {
+    height: 200px;
+    width: 600px;
+    margin: auto;
+}
+
+.upload-container {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image:url('https://images.unsplash.com/photo-1523249322636-7defc1f0c35a?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.upload-container button {
+    background-color: #c1121f;
+    border: none;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    transition: .2s;
+    margin-bottom: 1rem;
+    color: white;
+    margin-top: 10vh;
+
+
+    .upload-container button:hover {
+        background-color: #780000;
+    }
+
+    /* MEDIA QUERIES */
+    @media screen and (max-width: 580px) {
+        .hero-container .header-container .box h1 {
+            font-size: 3.5rem;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .hero-container .header-container .box h1 {
+            font-size: 2.5rem;
+        }
+    }
+}
