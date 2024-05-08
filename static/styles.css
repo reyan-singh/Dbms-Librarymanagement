@@ -129,7 +129,6 @@ a {
     display: grid;
     row-gap: 2rem;
     grid-template-columns: repeat(3, 1fr);
-    background-color: #202125;
 }
 
 .notfound {
@@ -223,7 +222,7 @@ a {
 
 
 
-  .card {
+  .cards {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
@@ -236,7 +235,7 @@ a {
     font-size: 18px;
   }
 
- 
+
 
   a {
     text-decoration: none;
