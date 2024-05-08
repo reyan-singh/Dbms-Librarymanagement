@@ -109,7 +109,6 @@ a {
     text-align: center;
     color: #fff;
 }
-
 .book-gallery {
     padding: 0 10vw;
     display: grid;
@@ -122,6 +121,14 @@ a {
     padding: 0 10vw;
     display: grid;
     row-gap: 2rem;
+    background-color: #202125;
+}
+
+.user-gallery {
+    padding: 0 10vw;
+    display: grid;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
     background-color: #202125;
 }
 
