@@ -78,22 +78,22 @@ def get_data_by_title(val):
     return jsonify(data)
 
 
-@app.route('/data', methods=['POST'])
-def add_data():
+@app.route('/addBook', methods=['POST'])
+def add_book():
     print("uploading")
     cur = mysql.connection.cursor()
-    # id = request.form['id']
     result = request.form
     print(len(result))
-    for fieldname, value in result.items():
-     print(fieldname)
-     print(value)
+    # for fieldname, value in result.items():
+    #  print(fieldname + ": " +value)
 
     title = request.form.get('title')
     keywords = request.form.get('keywords')
     topic = request.form.get('topic')
     content = request.form.get('content')
-    cur.execute('''INSERT INTO Books (title, keywords, topic, content) VALUES (%s, %s, %s, %s)''', (title, keywords, topic, content))
+    userid = int(request.form.get('userid'))
+    print([title, keywords, topic, content, userid])
+    cur.callproc('AddBook', [title, keywords, topic, content, userid])
     mysql.connection.commit()
     cur.close()
     return jsonify({'message': 'Data added successfully'})

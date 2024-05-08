@@ -69,7 +69,6 @@
                     function(data, status){
                     $('.book-gallery').empty();
                     $('.notfound').hide();
-                    $('.loader').show();
                     $('.book-gallery').hide();
 
                     if(data==null || data==""){
@@ -80,6 +79,7 @@
                             t.content.querySelector('.card-header').textContent= data[index][1];
                             t.content.querySelector('.card-title').textContent= data[index][2];
                             t.content.querySelector('.card-text').textContent= data[index][3];
+                            t.content.querySelector('.card-user').textContent= "Uploaded by: " + data[index][5];
 
                             var cardstar=t.content.querySelector('.card-star');
                             var stars=data[index][4];
@@ -130,6 +130,7 @@
                                 t.content.querySelector('.card-header').textContent= data[index][1];
                                 t.content.querySelector('.card-title').textContent= data[index][2];
                                 t.content.querySelector('.card-text').textContent= data[index][3];
+                                t.content.querySelector('.card-user').textContent= "Uploaded by: " + data[index][5];
 
                                 var cardstar=t.content.querySelector('.card-star');
                                 var stars=data[index][4];
@@ -158,6 +159,7 @@
                 <h5 class="card-title"></h5>
                 <p class="card-text"></p>
             </div>
+            <div class="card-user"></div>
             <button class="ratevalue" data-bs-toggle="modal" onclick="javascript:getBookid(this);" data-bs-target="#rateModal">Rate</button>
             <div class="card-star-cont">
                 <img align="center" class="card-star" width="100%" src="">
@@ -186,6 +188,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/AISupport">AI Support</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="/userlist">Users Ranking</a>
                     </li>
                     </ul>
                     <span class="navbar-text">

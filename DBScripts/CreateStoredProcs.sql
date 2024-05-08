@@ -5,12 +5,52 @@ DROP PROCEDURE IF EXISTS  GetSearchedBooks;
 DROP PROCEDURE IF EXISTS  GetBooksRating;
 DROP FUNCTION IF EXISTS  GetBookRating;
 DROP PROCEDURE IF EXISTS  GetUsersRating;
+DROP PROCEDURE IF EXISTS  AddBook;
+DROP FUNCTION IF EXISTS  GetUserName;
+
+
+use ILibrary;
+DELIMITER //
+CREATE PROCEDURE GetUsersRating()
+BEGIN
+	SELECT B.userid,U.name,(sum(R.star)/count(*)) FROM Books B
+	INNER JOIN Rating R ON B.id=R.bookid 
+    INNER JOIN Users U ON B.userid=U.id 
+	GROUP BY B.userid,U.name;
+END //
+DELIMITER ;
+
+
+use ILibrary;
+DELIMITER //
+CREATE FUNCTION GetBookRating(id int)  RETURNS int DETERMINISTIC
+BEGIN
+	DECLARE total int;
+	SELECT (sum(R.star)/count(*)) into total FROM Books B
+    INNER JOIN Rating R ON B.id=R.bookid 
+	WHERE  B.id=id
+	GROUP BY B.id;
+    RETURN total;
+END //
+DELIMITER ;
+
+use ILibrary;
+DELIMITER //
+CREATE FUNCTION GetUserName(id int)  RETURNS varchar(255) DETERMINISTIC
+BEGIN
+	DECLARE uname varchar(255);
+	SELECT U.name into uname FROM Users U
+	INNER JOIN Books B ON B.userid=U.id 
+	WHERE  B.id=id;
+	RETURN uname;
+END //
+DELIMITER ;
 
 USE ILibrary;
 DELIMITER //
 CREATE PROCEDURE GetALLBooks() 
 BEGIN
-	SELECT DISTINCT B.id,B.title,B.keywords,B.topic,GetBookRating(B.id) AS Rating  FROM Books B LEFT JOIN Rating R ON B.id=R.bookid;
+	SELECT DISTINCT B.id,B.title,B.keywords,B.topic,GetBookRating(B.id) AS Rating, GetUserName(B.id) AS UserName  FROM Books B LEFT JOIN Rating R ON B.id=R.bookid;
 END //
 DELIMITER ;
 
@@ -35,6 +75,23 @@ BEGIN
 END //
 DELIMITER ;
 
+
+
+-- use ILibrary;
+-- DELIMITER //
+-- CREATE FUNCTION GetBookRating(id int)  RETURNS int DETERMINISTIC
+-- BEGIN
+-- 	DECLARE total int;
+-- 	SELECT (sum(R.star)/count(*)) into total FROM Books B
+--     INNER JOIN Rating R ON B.id=R.bookid 
+-- 	WHERE  B.id=id
+-- 	GROUP BY B.id;
+--     RETURN total;
+-- END //
+-- DELIMITER ;
+
+
+
 use ILibrary;
 DELIMITER //
 CREATE PROCEDURE GetBooksRating() 
@@ -47,28 +104,16 @@ DELIMITER ;
 
 use ILibrary;
 DELIMITER //
-CREATE FUNCTION GetBookRating(id int)  RETURNS int DETERMINISTIC
+CREATE PROCEDURE AddBook(title varchar(255),
+    keywords varchar(1000),
+    topic varchar(255),
+    content MEDIUMBLOB,
+	userid int)
 BEGIN
-	DECLARE total int;
-	SELECT (sum(R.star)/count(*)) into total FROM Books B
-    INNER JOIN Rating R ON B.id=R.bookid 
-	WHERE  B.id=id
-	GROUP BY B.id;
-    RETURN total;
+	INSERT INTO Books (title, keywords, topic,content,userid)
+    VALUES(title,keywords,topic,content,userid);
 END //
 DELIMITER ;
-
-use ILibrary;
-DELIMITER //
-CREATE PROCEDURE GetUsersRating()
-BEGIN
-	SELECT B.userid,U.name,(sum(R.star)/count(*)) FROM Books B
-	INNER JOIN Rating R ON B.id=R.bookid 
-    INNER JOIN Users U ON B.userid=U.id 
-	GROUP BY B.userid,U.name;
-END //
-DELIMITER ;
-
 
 
 

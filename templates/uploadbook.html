@@ -8,18 +8,7 @@
     <link rel="stylesheet" href="../static/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <title>Website</title>
-<!--     <script>-->
-<!--          $( document ).ready(function() {-->
-<!--              console.log("ready upload!");-->
-<!--              var len = 2;-->
-<!--              var outputElement = $("#submitbtn");-->
-<!--              const apiUrl = '/uploadbook';-->
-<!--              outputElement.onclick(function (e) {-->
-<!--                  alert('ok');-->
-<!--              });-->
-<!--          });-->
-<!--     </script>-->
+    <title>Upload Book</title>
 </head>
 <body>
 
@@ -45,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/AISupport">AI Support</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/userlist">Users Ranking</a>
+                    </li>
                     </ul>
                     <span class="navbar-text">
                         <button class="profile-btn">A</button>
@@ -62,25 +54,29 @@
     
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form method="post" action="/data">
+
                 <div class="modal-content">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Upload A Book</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
+ <form method="post" action="/addBook"  target="_self">
                     <div class="modal-body">
+                        <div  class="mb-3">
+                            <label for="userid" class="form-label">User Id</label>
+                            <input id="userid"  name="userid" type="text" class="form-control"  placeholder="Enter User ID">
+                        </div>
                         <div  class="mb-3">
                             <label for="title" class="form-label">Book Title</label>
                             <input id="title"  name="title" type="text" class="form-control"  placeholder="Enter Book Name">
                         </div>
                         <div class="mb-3">
                             <label for="keywords" class="form-label">Add KEYWORDS</label>
-                            <input id="keywords" type="text" name="keywords" class="form-control"  placeholder="Enter KEYWORDS">
+                            <input id="keywords" name="keywords" type="text" class="form-control"  placeholder="Enter KEYWORDS">
                         </div>
                         <div class="mb-3">
                             <label for="topic" for="topic" class="form-label">Add Book Topic</label>
-                            <input type="text"  id="topic"  name="topic"  class="form-control" placeholder="Enter Topic Name">
+                            <input  id="topic"  name="topic" type="text"  class="form-control" placeholder="Enter Topic Name">
                         </div>
                         <div class="mb-3">
                             <label for="content" class="form-label">Book Cover</label>
@@ -92,12 +88,12 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
                     </div>
+                 </form>
                 </div>
-            </form>
+
             </div>
         </div>
     </div>
-    
     <script src="../static/script.js"></script>
 </body>
 </html>
