@@ -5,8 +5,8 @@ from geminiapi import *
 app = Flask(__name__,static_folder='static',template_folder='templates')
 
 # Required
-app.config["MYSQL_USER"] = "reyan"
-app.config["MYSQL_PASSWORD"] = "2406"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "ILibrary"
 # Extra configs, optional:
 mysql = MySQL(app)
@@ -33,6 +33,11 @@ def uploadbook():
 def lendbook():
     return render_template('lendbook.html')
 
+@app.route("/userlist")
+def userlist():
+    return render_template('userList.html')
+
+
 @app.route('/data', methods=['GET'])
 def get_data():
     cur = mysql.connection.cursor()
@@ -41,6 +46,15 @@ def get_data():
     data = cur.fetchall()
     cur.close()
     return jsonify(data)
+
+@app.route('/usersranking', methods=['GET'])
+def get_usersranking():
+    cur = mysql.connection.cursor()
+    cur.callproc('GetUsersRating')
+    data = cur.fetchall()
+    cur.close()
+    return jsonify(data)
+
 
 @app.route('/data/<int:id>', methods=['GET'])
 def get_data_by_id(id):
@@ -53,6 +67,7 @@ def get_data_by_id(id):
 @app.route('/books/<string:val>', methods=['GET'])
 def get_data_by_title(val):
     cur = mysql.connection.cursor()
+    val=val.replace(" ","|")
     cur.callproc('GetSearchedBooks', [val])
     #mtitle='%' + title + '%'
     #cur.execute('''SELECT title, keywords, topic FROM Books WHERE title like %s || keywords like %s''', (mtitle,mtitle,))
