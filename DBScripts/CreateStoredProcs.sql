@@ -7,7 +7,7 @@ DROP FUNCTION IF EXISTS  GetBookRating;
 DROP PROCEDURE IF EXISTS  GetUsersRating;
 DROP PROCEDURE IF EXISTS  AddBook;
 DROP FUNCTION IF EXISTS  GetUserName;
-
+DROP TRIGGER IF EXISTS  after_books_insert;
 
 use ILibrary;
 DELIMITER //
@@ -75,23 +75,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
--- use ILibrary;
--- DELIMITER //
--- CREATE FUNCTION GetBookRating(id int)  RETURNS int DETERMINISTIC
--- BEGIN
--- 	DECLARE total int;
--- 	SELECT (sum(R.star)/count(*)) into total FROM Books B
---     INNER JOIN Rating R ON B.id=R.bookid 
--- 	WHERE  B.id=id
--- 	GROUP BY B.id;
---     RETURN total;
--- END //
--- DELIMITER ;
-
-
-
 use ILibrary;
 DELIMITER //
 CREATE PROCEDURE GetBooksRating() 
@@ -116,6 +99,19 @@ END //
 DELIMITER ;
 
 
-
+DELIMITER //
+CREATE TRIGGER after_books_insert
+AFTER INSERT
+ON Books
+FOR EACH ROW
+BEGIN
+	DECLARE uname varchar(255);
+    DECLARE txt varchar(255);
+	Select GetUserName(NEW.userid) into uname;
+    SELECT CONCAT("Thanks UserId:" , CAST(NEW.userid as char) , " for adding new book title ", NEW.title) into txt;
+    INSERT INTO Messages(userid, msg)
+    VALUES (NEW.userid, txt);
+END; //
+DELIMITER ;
 
 

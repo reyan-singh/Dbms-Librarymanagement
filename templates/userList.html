@@ -7,8 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>AI Support</title>
     <script>
         $( document ).ready(function() {
@@ -32,14 +31,14 @@
                         $('.loader').hide();
                         $('.user-gallery').show();
                         var t = document.querySelector('#mytemplate');
-                        t.content.querySelector('.card-header').textContent= "User ID: "+ data[index][0];
-                        t.content.querySelector('.card-title').textContent= "User Name: "+data[index][1];
-                        t.content.querySelector('.card-text').textContent= "User Rating: "+data[index][2];
+                        t.content.querySelector('.uid').textContent= "User ID: "+ data[index][0];
+                        t.content.querySelector('.title').textContent= "User Name: "+data[index][1];
+                        t.content.querySelector('.rating').innerHTML= "User Rating: <b style='color:red;'>"+data[index][2]+"</b>";
 
-                        var cardstar=t.content.querySelector('.card-star');
-                        var stars=data[index][4];
-                        if(stars==null)stars=0;
-                        $(cardstar).attr("src","../static/img/"+stars+".png");
+                        // var cardstar=t.content.querySelector('.card-star');
+                        // var stars=data[index][4];
+                        // if(stars==null)stars=0;
+                        // $(cardstar).attr("src","../static/img/"+stars+".png");
 
                         var clone = document.importNode(t.content, true); // where true means deep copy
                         $('.user-gallery').append(clone);
@@ -51,16 +50,34 @@
     </script>
 </head>
 <body>
-    <template  id="mytemplate">
+    <template  id="mytemplate2">
         <div class="card text-bg-success mb-3">
             <img class="user-img" width="30%" src="../static/img/user.png">
             <div class="card-header"></div>
-            <div class="card-body">
+            <div class="card-title">
                 <h5 class="card-title"></h5>
                 <p class="card-text"></p>
             </div>
         </div>
     </template >
+
+    <template  id="mytemplate">
+        <div class="card">
+          <img src="../static/img/user.png" alt="John" style="width:100%">
+          <h1 class="title"></h1>
+          <p class="uid"></p>
+          <p class="rating"></p>
+          <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+          </div>
+          <p><button>Contact</button></p>
+        </div>
+
+    </template >
+
 
     <!-- NAVBAR SECTION STARTS -->
     <div class="navbar-container">

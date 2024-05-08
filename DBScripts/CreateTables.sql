@@ -5,6 +5,7 @@ USE ILibrary;
 DROP TABLE IF EXISTS  Users;
 DROP TABLE IF EXISTS  Books;
 DROP TABLE IF EXISTS Rating;
+DROP TABLE IF EXISTS Messages;
 
 USE ILibrary;
 CREATE TABLE IF NOT EXISTS Users (
@@ -31,3 +32,9 @@ CREATE TABLE IF NOT EXISTS Rating (
     bookid int REFERENCES Books(id)
 );
 
+USE ILibrary;
+CREATE TABLE IF NOT EXISTS Messages (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    userid int REFERENCES Users(id),
+    msg varchar(1000)
+);
